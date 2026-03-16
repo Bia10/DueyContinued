@@ -2,6 +2,10 @@
 
     <Import Project="..\Source.targets" />
 
+    <PropertyGroup>
+      <PackageId>DueyContinued.Abstractions</PackageId>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
     </ItemGroup>

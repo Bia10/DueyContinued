@@ -2,6 +2,7 @@
 
     <PropertyGroup>
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <PackageId>DueyContinued.Provider.WZ</PackageId>
     </PropertyGroup>
 
     <Import Project="..\Source.targets" />

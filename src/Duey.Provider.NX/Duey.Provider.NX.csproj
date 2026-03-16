@@ -2,6 +2,10 @@
 
     <Import Project="..\Source.targets" />
 
+    <PropertyGroup>
+      <PackageId>DueyContinued.Provider.NX</PackageId>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\Duey.Abstractions\Duey.Abstractions.csproj" />
     </ItemGroup>
