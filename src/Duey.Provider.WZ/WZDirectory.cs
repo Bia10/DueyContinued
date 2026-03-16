@@ -47,9 +47,11 @@ public class WZDirectory : AbstractWZNode, IDataDirectory
 
                 switch (type)
                 {
+                    case 1:
                     case 3:
                         yield return new WZDirectory(_package, offset, name, this);
                         break;
+                    case 2:
                     case 4:
                         yield return new WZImage(_package.View, _package.Cipher, 0, offset, name, this);
                         break;
