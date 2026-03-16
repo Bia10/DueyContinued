@@ -35,10 +35,23 @@ public class WZDirectory : AbstractWZNode, IDataDirectory
             {
                 var type = reader.ReadByte();
                 if (type > 4) throw new WZPackageException("Invalid type while parsing directory");
-                var isDir = (type & 1) == 1;
-                var name = type <= 2
-                    ? reader.ReadStringOffset()
-                    : reader.ReadString();
+
+                string name;
+                if (type <= 2)
+                {
+                    // Back-reference: offset points to the type byte of the original entry,
+                    // followed by the inline name string. Skip the type byte before reading.
+                    var nameOffset = reader.ReadInt32();
+                    var resumePos = reader.BaseStream.Position;
+                    reader.BaseStream.Position = _package.Start + nameOffset;
+                    reader.ReadByte();
+                    name = reader.ReadString();
+                    reader.BaseStream.Position = resumePos;
+                }
+                else
+                {
+                    name = reader.ReadString();
+                }
 
                 reader.ReadCompressedInt();
                 reader.ReadCompressedInt();
